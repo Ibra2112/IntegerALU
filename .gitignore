@@ -1,0 +1,27 @@
+# OS files
+.DS_Store
+.Trash/
+
+# Verilog compilation files
+*.vcd
+*.vvp
+
+# LaTeX compilation files
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+
+# PDF files (optional - uncomment if you don't want to track PDFs)
+# *.pdf
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+

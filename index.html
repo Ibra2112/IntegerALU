@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Integer ALU Project - Verilog Implementation</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">Integer ALU</div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                <li><a href="#operations" class="nav-link">Operations</a></li>
+                <li><a href="#modules" class="nav-link">ALU Modules</a></li>
+                <li><a href="#waveforms" class="nav-link">Waveforms</a></li>
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Integer Arithmetic Logic Unit</h1>
+            <p class="hero-subtitle">A comprehensive Verilog implementation of a scalable ALU system</p>
+            <p class="hero-description">
+                This project demonstrates the design and implementation of a complete Arithmetic Logic Unit (ALU) 
+                supporting 12 operations across 4-bit, 8-bit, 16-bit, and 32-bit data paths. Built using Verilog HDL 
+                with comprehensive testing and waveform analysis.
+            </p>
+            <div class="hero-stats">
+                <div class="stat">
+                    <div class="stat-number">12</div>
+                    <div class="stat-label">Operations</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">4</div>
+                    <div class="stat-label">Bit Widths</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">Tested</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Operations Section -->
+    <section id="operations" class="operations">
+        <div class="container">
+            <h2 class="section-title">ALU Operations</h2>
+            <p class="section-subtitle">The ALU supports 12 distinct operations organized into three categories</p>
+            
+            <div class="operations-grid">
+                <!-- Binary Logic Operations -->
+                <div class="operation-category">
+                    <h3 class="category-title">Binary Logic Operations</h3>
+                    <div class="operation-cards">
+                        <div class="operation-card">
+                            <div class="card-icon">¬</div>
+                            <h4>NOT</h4>
+                            <p>Bitwise inversion of operand A</p>
+                            <div class="opcode">Opcode: 0000</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">∧</div>
+                            <h4>AND</h4>
+                            <p>Bitwise AND of operands A and B</p>
+                            <div class="opcode">Opcode: 0001</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">⊼</div>
+                            <h4>NAND</h4>
+                            <p>Bitwise NAND of operands A and B</p>
+                            <div class="opcode">Opcode: 0010</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">∨</div>
+                            <h4>OR</h4>
+                            <p>Bitwise OR of operands A and B</p>
+                            <div class="opcode">Opcode: 0011</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">⊽</div>
+                            <h4>NOR</h4>
+                            <p>Bitwise NOR of operands A and B</p>
+                            <div class="opcode">Opcode: 0100</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">⊕</div>
+                            <h4>XOR</h4>
+                            <p>Bitwise XOR of operands A and B</p>
+                            <div class="opcode">Opcode: 0101</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">⊙</div>
+                            <h4>XNOR</h4>
+                            <p>Bitwise XNOR of operands A and B</p>
+                            <div class="opcode">Opcode: 0110</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arithmetic Operations -->
+                <div class="operation-category">
+                    <h3 class="category-title">Arithmetic Operations</h3>
+                    <div class="operation-cards">
+                        <div class="operation-card">
+                            <div class="card-icon">+</div>
+                            <h4>ADD</h4>
+                            <p>Addition: A + B + CI</p>
+                            <div class="opcode">Opcode: 0111</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">−</div>
+                            <h4>SUB</h4>
+                            <p>Subtraction: A - B - BI</p>
+                            <div class="opcode">Opcode: 1000</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">×</div>
+                            <h4>MUL</h4>
+                            <p>Multiplication: A × B</p>
+                            <div class="opcode">Opcode: 1001</div>
+                        </div>
+                        <div class="operation-card">
+                            <div class="card-icon">÷</div>
+                            <h4>DIV</h4>
+                            <p>Division: A ÷ B</p>
+                            <div class="opcode">Opcode: 1010</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Shift Operations -->
+                <div class="operation-category">
+                    <h3 class="category-title">Shift Operations</h3>
+                    <div class="operation-cards">
+                        <div class="operation-card">
+                            <div class="card-icon">⇄</div>
+                            <h4>SHIFT</h4>
+                            <p>Arithmetic shift with configurable direction and amount</p>
+                            <div class="opcode">Opcode: 1011</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ALU Modules Section -->
+    <section id="modules" class="modules">
+        <div class="container">
+            <h2 class="section-title">ALU Control Modules</h2>
+            <p class="section-subtitle">Scalable implementations from 4-bit to 32-bit data paths</p>
+            
+            <div class="modules-grid">
+                <div class="module-card">
+                    <div class="module-header">
+                        <h3>4-Bit ALU</h3>
+                        <span class="module-badge">Educational</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Foundation implementation demonstrating core ALU concepts</p>
+                        <ul class="module-features">
+                            <li>4-bit operands and results</li>
+                            <li>8-bit multiplication output</li>
+                            <li>Shifts: 0-3 positions</li>
+                            <li>Range: 0-15</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <h3>8-Bit ALU</h3>
+                        <span class="module-badge">Extended</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Extended functionality for larger data processing</p>
+                        <ul class="module-features">
+                            <li>8-bit operands and results</li>
+                            <li>16-bit multiplication output</li>
+                            <li>Shifts: 0-7 positions</li>
+                            <li>Range: 0-255</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <h3>16-Bit ALU</h3>
+                        <span class="module-badge">Scalable</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Mid-range implementation for enhanced capabilities</p>
+                        <ul class="module-features">
+                            <li>16-bit operands and results</li>
+                            <li>32-bit multiplication output</li>
+                            <li>Shifts: 0-15 positions</li>
+                            <li>Range: 0-65,535</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <h3>32-Bit ALU</h3>
+                        <span class="module-badge">Industry Standard</span>
+                    </div>
+                    <div class="module-content">
+                        <p>Full-scale implementation for modern processor architectures</p>
+                        <ul class="module-features">
+                            <li>32-bit operands and results</li>
+                            <li>64-bit multiplication output</li>
+                            <li>Shifts: 0-31 positions</li>
+                            <li>Range: 0-4,294,967,295</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="architecture-diagram">
+                <h3>ALU Architecture</h3>
+                <div class="diagram-container">
+                    <div class="diagram-box">
+                        <div class="diagram-inputs">
+                            <div class="diagram-label">Inputs</div>
+                            <div>A[n:0]</div>
+                            <div>B[n:0]</div>
+                            <div>OPCODE[3:0]</div>
+                            <div>CI, BI</div>
+                        </div>
+                        <div class="diagram-alu">
+                            <div class="diagram-label">ALU Control Module</div>
+                            <div class="diagram-modules">
+                                <span>Logic Ops</span>
+                                <span>Arithmetic Ops</span>
+                                <span>Shifter</span>
+                            </div>
+                        </div>
+                        <div class="diagram-outputs">
+                            <div class="diagram-label">Outputs</div>
+                            <div>RESULT1[n:0]</div>
+                            <div>RESULT2[n:0]</div>
+                            <div>CO</div>
+                            <div>OVERFLOW[n:0]</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Waveforms Section -->
+    <section id="waveforms" class="waveforms">
+        <div class="container">
+            <h2 class="section-title">Waveform Analysis</h2>
+            <p class="section-subtitle">Simulation results verified using Icarus Verilog and GTKWave</p>
+            
+            <div class="waveform-tabs">
+                <button class="tab-btn active" data-tab="logic">Logic Operations</button>
+                <button class="tab-btn" data-tab="arithmetic">Arithmetic Operations</button>
+                <button class="tab-btn" data-tab="control">Control Modules</button>
+            </div>
+
+            <div class="waveform-content">
+                <!-- Logic Operations Tab -->
+                <div class="tab-panel active" id="logic">
+                    <div class="waveform-grid">
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/not4.jpeg" alt="NOT Gate Waveform" loading="lazy">
+                            <h4>4-Bit NOT Gate</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/FourBitAND.jpeg" alt="AND Gate Waveform" loading="lazy">
+                            <h4>4-Bit AND Gate</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/FourBitNAND.jpeg" alt="NAND Gate Waveform" loading="lazy">
+                            <h4>4-Bit NAND Gate</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/FourBitOR.jpeg" alt="OR Gate Waveform" loading="lazy">
+                            <h4>4-Bit OR Gate</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/FourBitNOR.jpeg" alt="NOR Gate Waveform" loading="lazy">
+                            <h4>4-Bit NOR Gate</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/FourBitXOR.png" alt="XOR Gate Waveform" loading="lazy">
+                            <h4>4-Bit XOR Gate</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/FourBitXNOR.jpeg" alt="XNOR Gate Waveform" loading="lazy">
+                            <h4>4-Bit XNOR Gate</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Arithmetic Operations Tab -->
+                <div class="tab-panel" id="arithmetic">
+                    <div class="waveform-grid">
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/add4.jpeg" alt="Adder Waveform" loading="lazy">
+                            <h4>4-Bit Adder</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/sub4.jpeg" alt="Subtractor Waveform" loading="lazy">
+                            <h4>4-Bit Subtractor</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/mul4.jpeg" alt="Multiplier Waveform" loading="lazy">
+                            <h4>4-Bit Multiplier</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/div4.jpeg" alt="Divider Waveform" loading="lazy">
+                            <h4>4-Bit Divider</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/arithmetic_shifterTest.jpeg" alt="Shifter Waveform" loading="lazy">
+                            <h4>Arithmetic Shifter</h4>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Control Modules Tab -->
+                <div class="tab-panel" id="control">
+                    <div class="waveform-grid">
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/alu_control.jpeg" alt="4-Bit ALU Control Waveform" loading="lazy">
+                            <h4>4-Bit ALU Control</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/alu_control8.jpeg" alt="8-Bit ALU Control Waveform" loading="lazy">
+                            <h4>8-Bit ALU Control</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/alu_control16.jpeg" alt="16-Bit ALU Control Waveform" loading="lazy">
+                            <h4>16-Bit ALU Control</h4>
+                        </div>
+                        <div class="waveform-item">
+                            <img src="Step2/WaveForm ScopeShots/alu_control32.jpeg" alt="32-Bit ALU Control Waveform" loading="lazy">
+                            <h4>32-Bit ALU Control</h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="about">
+        <div class="container">
+            <h2 class="section-title">About the Project</h2>
+            
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Project Overview</h3>
+                    <p>
+                        This project demonstrates the design and implementation of a complete Arithmetic Logic Unit (ALU) 
+                        using Verilog HDL. The ALU integrates 12 distinct operations under unified control modules, 
+                        demonstrating hierarchical design principles and comprehensive scalability from 4-bit to 32-bit 
+                        data paths.
+                    </p>
+                    <p>
+                        The implementation follows industry best practices for digital system design, including modular 
+                        development, comprehensive testing, and waveform analysis. Each operation was individually 
+                        verified before integration into the control modules.
+                    </p>
+                    <h3>Key Features</h3>
+                    <ul class="features-list">
+                        <li>12 integrated ALU operations (7 logic, 4 arithmetic, 1 shift)</li>
+                        <li>Scalable design: 4-bit, 8-bit, 16-bit, and 32-bit implementations</li>
+                        <li>Unified control interface with 4-bit opcode</li>
+                        <li>Comprehensive testbenches for all operations</li>
+                        <li>Waveform analysis using Icarus Verilog and GTKWave</li>
+                        <li>Modular, hierarchical design approach</li>
+                    </ul>
+                </div>
+
+                <div class="project-date">
+                    <h3>Author</h3>
+                    <div class="author-name">Ibrahima Balde</div>
+                    <p><strong>Date:</strong> November 2025</p>
+                </div>
+            </div>
+
+            <div class="tech-stack">
+                <h3>Technology Stack</h3>
+                <div class="tech-items">
+                    <div class="tech-item">Verilog HDL</div>
+                    <div class="tech-item">Icarus Verilog</div>
+                    <div class="tech-item">GTKWave</div>
+                    <div class="tech-item">Digital Design</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Integer ALU Project.</p>
+            <p>Built with modern web technologies to showcase Verilog hardware design.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
